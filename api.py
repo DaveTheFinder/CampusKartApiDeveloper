@@ -8,7 +8,7 @@ class Api:
     def __init__(self, version):
         self. arduinoList = []
         if version == "carrito":
-            arduino = Carrito(os.popen("ls /dev/ttyACM*").read())
+            arduino = Carrito("/dev/ttyACM0")
             self.arduinoList = [arduino]
         elif version == "carroV1":
             puertos = (os.popen("ls /dev/ttyACM*").read()).split()
@@ -20,17 +20,17 @@ class Api:
     def POSTDir(self, number):
         msg = "Direccion, " + str(number)
         print(msg)
-        for(arduino in self.arduinoList):
+        for arduino in self.arduinoList:
             arduino.sendDirection(number)
      
         #self.s.sendall()
     def POSTSentido(self):
-        self.carrito.Reverse()
+        self.arduinoList[0].Reverse()
     
     def POSTVel(self, number):
         msg = "Velocidad, " + str(number)
         print(msg)
-        for arduino in self.arduinoList):
+        for arduino in self.arduinoList:
             arduino.sendSpeed(number)
         
     def GETDir(self):

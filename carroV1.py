@@ -22,7 +22,7 @@ class CarroV1:
         mylist = [100, angle]
         for byte in mylist:
             string = struct.pack('!B', int(byte))
-            print(int(byte))
+            print(bytes(string))
             self.ser.write(string)
             
     def sendSpeed(self, vel):
