@@ -8,7 +8,7 @@ class Api:
     def __init__(self, version):
         self. arduinoList = []
         if version == "carrito":
-            arduino = Carrito("/dev/ttyACM0")
+            arduino = Carrito("/dev/ttyACM1")
             self.arduinoList = [arduino]
         elif version == "carroV1":
             puertos = (os.popen("ls /dev/ttyACM*").read()).split()
