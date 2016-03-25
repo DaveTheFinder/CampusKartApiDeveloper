@@ -1,3 +1,4 @@
+
 from twisted.internet.protocol import Factory, Protocol
 from twisted.internet import reactor
 from api import Api
@@ -18,22 +19,20 @@ class MovingRaspi(Protocol):
 
   def dataReceived(self, data):
     coordinates = []
-    dataRec = data.decode()
-    print(dataRec)
-    
-    coordinates = dataRec.split(',')
-    
-    if coordinates[1] == "Angle":
-      angleVar = float(coordinates[2])
-      angle = int(angleVar)
-      self.api.POSTDir(angle)
-    elif coordinates[1] == "Speed":
-      speedVar = float(coordinates[2])
-      speed = int(speedVar)
-      self.api.POSTVel(speed)
+    coordinates = data.split(',')
 
-   # print("Angle: ", angleVar + " Speed: ", speedVar)
- 
+  if coordiinates[0] == "angle" and coordinates[2] == "speed":
+    angleVar = int(coordinates[1])
+    speedVar = int(coordiantes[3])
+    
+    print("Angle: ", angleVar + " Speed: ", speedVar)
+    
+    self.api.POSTDir(angleVar)
+    self.api.POSTVel(speedVar)
+    
+  else:
+    # All wheels stop
+    stop()
 
 def stop():
     print("STOP")

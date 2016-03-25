@@ -1,3 +1,5 @@
+import sys
+sys.path.append('/usr/local/lib/python3.5/site-packages')
 from evdev import InputDevice, categorize, ecodes, KeyEvent
 
 #args: inputdevice,event.code1,evento.code2

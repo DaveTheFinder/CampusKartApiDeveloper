@@ -25,7 +25,7 @@ class MovingRaspi(Protocol):
     
     if coordinates[1] == "Angle":
       angleVar = float(coordinates[2])
-      angle = int(angleVar)
+      angle = int(angleVar) + 90
       self.api.POSTDir(angle)
     elif coordinates[1] == "Speed":
       speedVar = float(coordinates[2])
