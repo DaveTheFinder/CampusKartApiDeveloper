@@ -1,6 +1,6 @@
 import socket
 import os
-#from carroV1 import CarroV1
+from carroV1 import CarroV1
 from carrito import Carrito
 
 class Api:
@@ -8,7 +8,8 @@ class Api:
     def __init__(self, version):
         self. arduinoList = []
         if version == "carrito":
-            arduino = Carrito("/dev/ttyACM1")
+            puerto = (os.popen("ls /dev/ttyACM*").read()).split()
+            arduino = Carrito("/dev/ttyACM0")
             self.arduinoList = [arduino]
         elif version == "carroV1":
             puertos = (os.popen("ls /dev/ttyACM*").read()).split()
@@ -19,7 +20,7 @@ class Api:
         
     def POSTDir(self, number):
         msg = "Direccion, " + str(number)
-        print(msg)
+        #print(msg)
         for arduino in self.arduinoList:
             arduino.sendDirection(number)
      
@@ -28,8 +29,8 @@ class Api:
         self.arduinoList[0].Reverse()
     
     def POSTVel(self, number):
-        msg = "Velocidad, " + str(number)
-        print(msg)
+        #msg = "Velocidad, " + str(number)
+        #print(msg)
         for arduino in self.arduinoList:
             arduino.sendSpeed(number)
         
@@ -39,3 +40,10 @@ class Api:
     def getVel(self):
         print("velocity")
         
+    def Read(self):
+        x = ""
+        for arduino in self.arduinoList:
+            x = arduino.ReadValue()
+            if x != "z":
+                return True
+            

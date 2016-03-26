@@ -22,15 +22,21 @@ class CarroV1:
         mylist = [100, angle]
         for byte in mylist:
             string = struct.pack('!B', int(byte))
-            print(bytes(string))
+            #print(bytes(string))
             self.ser.write(string)
             
     def sendSpeed(self, vel):
         mylist = [118, vel]
         for byte in mylist:
             string = struct.pack('!B', int(byte))
-            print(bytes(string))
+            #print(bytes(string))
             #print(str(byte))
             self.ser.write(string)
         
     
+    def ReadValue(self):
+        x = "z"
+        if self.ser.inWaiting() > 0:
+            x = self.ser.read()
+        return x
+        

@@ -39,11 +39,12 @@ class Carrito:
             self.sentido = 0
             
     def sendSpeed(self,vel):
-        self.ser.flushOutput()
+        # self.ser.flushOutput()
         self.vel = vel
         cero = 0
         #vel = chr(vel)
-        direccion = chr(self.dir)
+        print("Donde me truena" + str(self.dir))
+        direccion = chr(int(self.dir))
         mylist = [vel,self.sentido,vel,self.sentido,self.dir]
         #print(vel)
         #print(self.dir)
